@@ -1,0 +1,1 @@
+MESSAGE = '나는 sandbox/w2/day01안에 있다'
