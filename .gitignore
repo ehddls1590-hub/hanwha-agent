@@ -1,15 +1,23 @@
 # github에 올리지 않을 목록 작성
 
-# sandbox/
-# .venv
-# __pycache__/
-# *.py[cod]
-# .pytest_cache/
+sandbox/
+.venv
 
-# .env
+__pycache__/
+*.py[cod]
+.pytest_cache/
 
-# .vscode/
-# idea/
-# .DS_Store
-# Thumbs.db
+.env
+upload/
+*.db
+*.pem
+
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+*.log
+
 

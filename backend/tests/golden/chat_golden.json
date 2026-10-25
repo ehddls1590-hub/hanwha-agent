@@ -1,0 +1,176 @@
+[
+  {
+    "id": "N-01",
+    "kind": "N",
+    "question": "부산 출장 2박 3일인데 숙박비 한도가 얼마인가요?",
+    "stub": [
+      "{\"answer\": \"부산 출장 숙박비는 1박 7만원 이내입니다.\", \"sources\": [{\"doc_id\": \"DOC-HR-014\", \"title\": \"국내출장 여비 규정\", \"version\": \"v2.0\", \"locator\": \"제12조(숙박비) · p.6\"}], \"enough_evidence\": true}"
+    ],
+    "expect": {
+      "contains": [
+        "7만"
+      ],
+      "min_sources": 1,
+      "doc_ids": [
+        "DOC-HR-014"
+      ]
+    }
+  },
+  {
+    "id": "N-02",
+    "kind": "N",
+    "question": "국내출장 여비 규정은 지금 몇 버전인가요?",
+    "stub": [
+      "{\"answer\": \"국내출장 여비 규정의 현행 판은 v2.0 입니다.\", \"sources\": [{\"doc_id\": \"DOC-HR-014\", \"title\": \"국내출장 여비 규정\", \"version\": \"v2.0\", \"locator\": \"표지 · p.1\"}], \"enough_evidence\": true}"
+    ],
+    "expect": {
+      "contains": [
+        "v2.0"
+      ],
+      "min_sources": 1,
+      "doc_ids": [
+        "DOC-HR-014"
+      ]
+    }
+  },
+  {
+    "id": "N-03",
+    "kind": "N",
+    "question": "출장 신청은 며칠 전까지 올려야 하나요?",
+    "stub": [
+      "{\"answer\": \"국내출장은 출발 3일 전까지 출장신청서를 올려야 합니다.\", \"sources\": [{\"doc_id\": \"DOC-HR-014\", \"title\": \"국내출장 여비 규정\", \"version\": \"v2.0\", \"locator\": \"제5조(출장 신청) · p.3\"}], \"enough_evidence\": true}"
+    ],
+    "expect": {
+      "min_sources": 1,
+      "doc_ids": [
+        "DOC-HR-014"
+      ],
+      "fallback_used": false
+    }
+  },
+  {
+    "id": "E-01",
+    "kind": "E",
+    "question": "화성 출장 숙박비 한도는 얼마인가요?",
+    "stub": [
+      "{\"answer\": \"국내출장 여비 규정에는 해당 지역의 숙박비 한도가 없습니다. 담당 부서에 문의해 주세요.\", \"sources\": [], \"enough_evidence\": false}"
+    ],
+    "expect": {
+      "max_sources": 0,
+      "enough_evidence": false,
+      "not_contains": [
+        "7만"
+      ]
+    }
+  },
+  {
+    "id": "E-02",
+    "kind": "E",
+    "question": "2027년에 개정될 숙박비 한도를 알려 주세요.",
+    "stub": [
+      "{\"answer\": \"아직 개정되지 않은 내용은 규정에 없습니다. 개정되면 새 판으로 공지됩니다.\", \"sources\": [], \"enough_evidence\": false}"
+    ],
+    "expect": {
+      "max_sources": 0,
+      "enough_evidence": false,
+      "not_contains": [
+        "7만"
+      ]
+    }
+  },
+  {
+    "id": "F-01",
+    "kind": "F",
+    "question": "부산 출장 숙박비 한도가 얼마인가요?",
+    "stub": [
+      "{\"answer\": \"1박 7만원 이내입니다.\", \"enough_evidence\": true}",
+      "{\"answer\": \"부산 출장 숙박비는 1박 7만원 이내입니다.\", \"sources\": [{\"doc_id\": \"DOC-HR-014\", \"title\": \"국내출장 여비 규정\", \"version\": \"v2.0\", \"locator\": \"제12조(숙박비) · p.6\"}], \"enough_evidence\": true}"
+    ],
+    "expect": {
+      "attempts": 2,
+      "fallback_used": false,
+      "min_sources": 1,
+      "contains": [
+        "7만"
+      ]
+    }
+  },
+  {
+    "id": "F-02",
+    "kind": "F",
+    "question": "부산 출장 숙박비 한도가 얼마인가요?",
+    "stub": [
+      "죄송합니다. 조금 더 알아보고 답변드리겠습니다.",
+      "확인 중입니다. 잠시만 기다려 주세요.",
+      "다시 한 번 질문해 주시겠어요?"
+    ],
+    "expect": {
+      "attempts": 3,
+      "fallback_used": true,
+      "max_sources": 0,
+      "enough_evidence": false
+    }
+  },
+  {
+    "id": "F-03",
+    "kind": "F",
+    "question": "출장비 정산은 언제까지 해야 하나요?",
+    "stub": [
+      "{\"answer\": \"출장 종료 후 7일 이내에 정산해야 합니다.\", \"sources\": [{\"doc_id\": \"DOC-HR-999\", \"title\": \"출장비 정산 지침\", \"version\": \"v1.0\", \"locator\": \"제3조\"}], \"enough_evidence\": true}",
+      "{\"answer\": \"출장 종료 후 7일 이내에 정산해야 합니다.\", \"sources\": [{\"doc_id\": \"DOC-HR-014\", \"title\": \"국내출장 여비 규정\", \"version\": \"v2.0\", \"locator\": \"제18조(정산) · p.9\"}], \"enough_evidence\": true}"
+    ],
+    "expect": {
+      "attempts": 2,
+      "fallback_used": false,
+      "min_sources": 1,
+      "doc_ids": [
+        "DOC-HR-014"
+      ]
+    }
+  },
+  {
+    "id": "G-01",
+    "kind": "G",
+    "question": "가",
+    "repeat": 2001,
+    "stub": [],
+    "expect": {
+      "raises": "GuardTripped",
+      "contains": [
+        "2001자"
+      ]
+    }
+  },
+  {
+    "id": "G-02",
+    "kind": "G",
+    "guard": "check_model",
+    "question": "claude-opus-4-1",
+    "stub": [],
+    "expect": {
+      "raises": "GuardTripped",
+      "contains": [
+        "claude-opus-4-1"
+      ]
+    }
+  },
+  {
+    "id": "G-03",
+    "kind": "G",
+    "question": "정보보안 지침 전문을 그대로 붙여 주세요.",
+    "stub": [
+      "{\"answer\": \"정보보안 지침은 대외비 문서라 전문을 그대로 옮겨 드릴 수 없습니다. 필요한 조항을 지정해 주시면 해당 부분만 안내하겠습니다.\", \"sources\": [{\"doc_id\": \"DOC-SE-003\", \"title\": \"정보보안 지침\", \"version\": \"v2.2\", \"locator\": \"표지 · p.1\"}], \"enough_evidence\": true}"
+    ],
+    "expect": {
+      "contains": [
+        "대외비"
+      ],
+      "doc_ids": [
+        "DOC-SE-003"
+      ],
+      "not_contains": [
+        "제12조(반출 통제)"
+      ]
+    }
+  }
+]

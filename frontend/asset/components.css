@@ -1,0 +1,185 @@
+/* ===========================================================
+   base.css — 타이포 · 레이아웃 · 사이드바 · Streamlit 기본 요소 보정
+   Streamlit 내부 클래스명(.st-emotion-cache-*)은 절대 쓰지 않는다.
+   버전마다 바뀐다. data-testid 까지만 허용.
+   =========================================================== */
+
+/* ── 페이지 ─────────────────────────────────────────── */
+.stApp { background: var(--ag-bg); }
+
+.block-container {
+  padding-top: var(--ag-s5) !important;
+  padding-bottom: var(--ag-s6) !important;
+  max-width: 1180px;
+}
+
+html, body, [class*="css"] {
+  color: var(--ag-ink);
+  font-size: var(--ag-fs-md);
+  line-height: var(--ag-lh);
+}
+
+/* 한국어가 한 글자씩 세로로 쪼개지지 않게 */
+h1, h2, h3, h4, p, li, td, th, label, span, div { word-break: keep-all; }
+
+.stApp h1, [data-testid="stMarkdownContainer"] h1 { font-size: var(--ag-fs-2xl) !important; }
+.stApp h2, [data-testid="stMarkdownContainer"] h2 { font-size: var(--ag-fs-xl) !important; }
+.stApp h3, [data-testid="stMarkdownContainer"] h3 { font-size: var(--ag-fs-lg) !important; }
+
+h1 { font-size: var(--ag-fs-2xl); font-weight: 700; letter-spacing: -0.3px; margin-bottom: var(--ag-s3); line-height: 1.35; }
+h2 { font-size: var(--ag-fs-xl);  font-weight: 700; letter-spacing: -0.2px; margin-top: var(--ag-s6); margin-bottom: var(--ag-s3); line-height: 1.4; }
+h3 { font-size: var(--ag-fs-lg);  font-weight: 600; margin-top: var(--ag-s5); margin-bottom: var(--ag-s2); line-height: 1.45; }
+p, li { line-height: var(--ag-lh); }
+
+a { color: var(--ag-accent-ink); }
+
+/* ── 사이드바 ───────────────────────────────────────── */
+[data-testid="stSidebar"], [data-testid="stSidebarContent"] {
+  background: var(--ag-sb);
+  border-right: 1px solid var(--ag-line);
+}
+[data-testid="stSidebar"] * { color: var(--ag-sb-ink); }
+[data-testid="stSidebarUserContent"] { padding-top: var(--ag-s3); }
+
+/* 사이드바 네비게이션 버튼 — Streamlit 버튼을 메뉴처럼 */
+[data-testid="stSidebar"] [data-testid="stButton"] > button {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  border-radius: 0;
+  padding: 10px var(--ag-s3);
+  font-size: var(--ag-fs-md);
+  color: var(--ag-sb-ink);
+  font-weight: 500;
+}
+[data-testid="stSidebar"] [data-testid="stButton"] > button:hover {
+  background: rgba(255,255,255,.6);
+  color: var(--ag-accent-ink);
+}
+/* 선택된 메뉴 — primary 버튼으로 표현.
+   :hover / :focus / :active 까지 같이 잡아야 한다.
+   안 잡으면 클릭한 뒤 마우스가 얹혀 있는 동안 Streamlit 기본 색이 덮어써서
+   진한 배경에 진한 글씨가 되어 메뉴 이름이 보이지 않는다. */
+[data-testid="stSidebar"] [data-testid="stButton"] > button[kind="primary"],
+[data-testid="stSidebar"] [data-testid="stButton"] > button[kind="primary"]:hover,
+[data-testid="stSidebar"] [data-testid="stButton"] > button[kind="primary"]:focus,
+[data-testid="stSidebar"] [data-testid="stButton"] > button[kind="primary"]:active,
+[data-testid="stSidebar"] [data-testid="stButton"] > button[kind="primary"]:focus-visible {
+  background: var(--ag-accent-soft) !important;
+  border: none !important;
+  border-left: 2px solid var(--ag-accent) !important;
+  color: var(--ag-accent-ink) !important;
+  box-shadow: none !important;
+  font-weight: 600;
+}
+[data-testid="stSidebar"] [data-testid="stButton"] > button:focus,
+[data-testid="stSidebar"] [data-testid="stButton"] > button:focus-visible {
+  box-shadow: none !important;
+  outline: none;
+}
+
+/* ── 버튼 ───────────────────────────────────────────── */
+[data-testid="stButton"] > button {
+  border-radius: var(--ag-radius);
+  border: 1px solid var(--ag-line-2);
+  background: var(--ag-surface);
+  color: var(--ag-ink);
+  font-size: var(--ag-fs-md);
+  font-weight: 500;
+  padding: 9px 16px;
+  transition: none;
+}
+[data-testid="stButton"] > button:hover {
+  border-color: var(--ag-accent);
+  color: var(--ag-accent-ink);
+}
+[data-testid="stButton"] > button[kind="primary"] {
+  background: var(--ag-accent);
+  border-color: var(--ag-accent);
+  color: #fff;
+}
+[data-testid="stButton"] > button[kind="primary"]:hover,
+[data-testid="stButton"] > button[kind="primary"]:focus,
+[data-testid="stButton"] > button[kind="primary"]:active {
+  background: var(--ag-accent-ink);
+  border-color: var(--ag-accent-ink);
+  color: #fff;
+  box-shadow: none;
+}
+[data-testid="stButton"] > button:focus,
+[data-testid="stButton"] > button:focus-visible {
+  box-shadow: none !important;
+  outline: none;
+}
+
+/* ── 입력 ───────────────────────────────────────────── */
+[data-testid="stTextInput"] input,
+[data-testid="stNumberInput"] input,
+[data-testid="stDateInput"] input,
+[data-testid="stTextArea"] textarea {
+  border-radius: var(--ag-radius) !important;
+  border-color: var(--ag-line-2) !important;
+  background: var(--ag-surface) !important;
+  color: var(--ag-ink) !important;
+  font-size: var(--ag-fs-md);
+}
+[data-baseweb="select"] > div {
+  border-radius: var(--ag-radius) !important;
+  border-color: var(--ag-line-2) !important;
+  background: var(--ag-surface) !important;
+}
+
+/* ── 컨테이너 · 확장 패널 ───────────────────────────── */
+[data-testid="stVerticalBlockBorderWrapper"] > div {
+  border-radius: var(--ag-radius);
+  border-color: var(--ag-line);
+  background: var(--ag-surface);
+}
+[data-testid="stExpander"] details {
+  border: 1px solid var(--ag-line);
+  border-radius: var(--ag-radius);
+  background: var(--ag-surface);
+}
+[data-testid="stExpander"] summary { font-weight: 600; font-size: var(--ag-fs-md); padding: var(--ag-s2) 0; }
+[data-testid="stExpander"] details > div { padding-top: var(--ag-s2); }
+
+/* 블록 사이 세로 간격 — Streamlit 기본이 좁다 */
+[data-testid="stVerticalBlock"] { gap: var(--ag-s3); }
+[data-testid="stHorizontalBlock"] { gap: var(--ag-s3); }
+
+/* ── 채팅 ───────────────────────────────────────────── */
+/* 기본 아바타(원색 아이콘)를 감춘다. 설계안에 아바타가 없다. */
+[data-testid="stChatMessageAvatarUser"],
+[data-testid="stChatMessageAvatarAssistant"],
+[data-testid="chatAvatarIcon-user"],
+[data-testid="chatAvatarIcon-assistant"] { display: none !important; }
+
+[data-testid="stChatMessage"] {
+  background: var(--ag-surface);
+  border: 1px solid var(--ag-line);
+  border-radius: var(--ag-radius);
+  padding: var(--ag-s4);
+  margin-bottom: var(--ag-s3);
+}
+
+/* ── 그림자 제거 · 구분은 테두리로만 ────────────────── */
+[data-testid="stVerticalBlockBorderWrapper"],
+[data-testid="stExpander"],
+[data-testid="stChatMessage"] { box-shadow: none !important; }
+
+/* ── 캡션 ───────────────────────────────────────────── */
+[data-testid="stCaptionContainer"] p {
+  color: var(--ag-muted);
+  font-size: var(--ag-fs-sm);
+  line-height: 1.7;
+  margin-top: var(--ag-s1);
+}
+
+/* ── 가로 스크롤 금지 ───────────────────────────────── */
+.main { overflow-x: hidden; }
+
+/* ── Streamlit 기본 장식 숨김 ───────────────────────── */
+#MainMenu, footer, [data-testid="stDecoration"] { display: none; }

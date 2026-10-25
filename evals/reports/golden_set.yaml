@@ -1,0 +1,201 @@
+# 골든셋 30문항 - 검색 품질 측정용
+# 규칙
+# - 정답은 "어느 문서의 어느 조항에 있는가"
+
+
+
+meta:
+  name: 사내 규정 골든셋 v1
+  items: 30
+  threshold: 0.55
+
+items:
+  # ── 단일 조항 조회 (10) ─────────────────────────────
+  - id: G01
+    question: 4급(대리) 직원의 국내출장 일비는 하루에 얼마인가요?
+    type: 단일 조항
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_keywords: ["30,000", "일비"]
+  - id: G02
+    question: 4급 직원이 광역시로 출장 갈 때 숙박비 상한은 얼마인가요?
+    type: 단일 조항
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_keywords: ["70,000", "숙박비"]
+  - id: G03
+    question: 4급 직원의 국내출장 식비는 얼마인가요?
+    type: 단일 조항
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_keywords: ["25,000", "식비"]
+  - id: G04
+    question: 출장 여비 규정은 어디에 적용되나요?
+    type: 단일 조항
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_keywords: ["국내", "적용"]
+  - id: G05
+    question: 재택근무는 주 며칠까지 가능한가요?
+    type: 단일 조항
+    expect_doc: DOC-HR-021
+    expect_version: v1.2
+    expect_keywords: ["주 3일"]
+  - id: G06
+    question: 복무 규정상 출장은 누구의 승인을 받아야 하나요?
+    type: 단일 조항
+    expect_doc: DOC-HR-002
+    expect_version: v3.1
+    expect_keywords: ["출장", "팀장"]
+  - id: G07
+    question: 법인카드는 어떤 경우에 사용할 수 있나요?
+    type: 단일 조항
+    expect_doc: DOC-FI-009
+    expect_version: v1.4
+    expect_keywords: ["법인카드"]
+  - id: G08
+    question: 장비를 외부로 반출하려면 어떤 절차가 필요한가요?
+    type: 단일 조항
+    expect_doc: DOC-SE-011
+    expect_version: v1.0
+    expect_keywords: ["반출 신청서", "부서장"]
+  - id: G09
+    question: 프로젝트 착수 단계에서 만들어야 하는 산출물은 무엇인가요?
+    type: 단일 조항
+    expect_doc: DOC-PM-005
+    expect_version: v2.0
+    expect_keywords: ["프로젝트 정의서", "이해관계자 목록"]
+  - id: G10
+    question: 교통비는 어떻게 정산하나요?
+    type: 단일 조항
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_keywords: ["교통비", "실제 이용한"]
+
+  # ── 표 안의 조건 조합 (6) — 표 단위 청킹의 효과가 드러나는 문항 ──
+  - id: G11
+    question: 4급 직원이 광역시로 출장 가면 일비와 숙박비는 각각 얼마인가요?
+    type: 표 안의 조건 조합
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_kind: 표
+    expect_keywords: ["30,000", "70,000"]
+  - id: G12
+    question: 3급과 4급의 일비 차이는 얼마인가요?
+    type: 표 안의 조건 조합
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_kind: 표
+    expect_keywords: ["35,000", "30,000"]
+  - id: G13
+    question: 1~2급 직원의 숙박비 상한은 얼마인가요?
+    type: 표 안의 조건 조합
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_kind: 표
+    expect_keywords: ["100,000"]
+  - id: G14
+    question: 5급 이하 직원의 식비는 4급과 같나요?
+    type: 표 안의 조건 조합
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_kind: 표
+    expect_keywords: ["25,000"]
+  - id: G15
+    question: 대리 직급이 2박 3일 부산 출장을 가면 교통비를 뺀 여비(일비·식비·숙박비 상한)는 얼마인가요?
+    type: 표 안의 조건 조합
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_kind: 표
+    expect_keywords: ["30,000", "70,000", "25,000"]
+  - id: G16
+    question: 직급별 일비를 표로 정리해주세요
+    type: 표 안의 조건 조합
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_kind: 표
+    expect_keywords: ["일비"]
+
+  # ── 개정 전후 비교 (4) — 버전 관리가 되어야 맞출 수 있다 ──
+  - id: G17
+    question: 4급 직원의 일비는 개정 전에 얼마였나요?
+    type: 개정 전후 비교
+    expect_doc: DOC-HR-014
+    expect_version: v1.1
+    needs_past_version: true
+    expect_keywords: ["일비", "25,000"]
+  - id: G18
+    question: 4급 직원의 숙박비 상한은 개정 전에 얼마였나요?
+    type: 개정 전후 비교
+    expect_doc: DOC-HR-014
+    expect_version: v1.1
+    needs_past_version: true
+    expect_keywords: ["65,000"]
+  - id: G19
+    question: 광역시 숙박비 상한은 언제 신설되었나요?
+    type: 개정 전후 비교
+    expect_doc: DOC-HR-014
+    expect_version: v2.0
+    expect_keywords: ["광역시 숙박비 상한 신설"]
+  - id: G20
+    question: 개정 전 교통비 정산 방식은 어땠나요?
+    type: 개정 전후 비교
+    expect_doc: DOC-HR-014
+    expect_version: v1.1
+    needs_past_version: true
+    expect_keywords: ["교통비", "실비"]
+
+  # ── 타 부서 문서 참조 (4) — 보안등급 필터가 정상 차단해야 한다 ──
+  - id: G21
+    question: 구매 계약 시 수의계약 한도는 얼마인가요?
+    type: 타 부서 문서 참조
+    expect_doc: DOC-PU-007
+    expect_version: v4.0
+    requires_clearance: 대외비
+    expect_keywords: ["5천만원"]
+  - id: G22
+    question: 정보보안 지침상 비밀번호 정책은 어떻게 되나요?
+    type: 타 부서 문서 참조
+    expect_doc: DOC-SE-003
+    expect_version: v2.2
+    requires_clearance: 대외비
+    expect_keywords: ["10자리"]
+  - id: G23
+    question: 협력사 평가는 어떤 기준으로 하나요?
+    type: 타 부서 문서 참조
+    expect_doc: DOC-PU-103
+    expect_version: v1.0
+    requires_clearance: 대외비
+  - id: G24
+    question: 접근권한은 누가 승인하나요?
+    type: 타 부서 문서 참조
+    expect_doc: DOC-SE-102
+    expect_version: v2.2
+    requires_clearance: 대외비
+    expect_keywords: ddddddd
+
+  # ── 규정에 없는 사항 (6) — 근거부족 응답이 정답 ──
+  - id: G25
+    question: 해외 출장 시 비즈니스석 탑승 기준이 어떻게 되나요?
+    type: 규정에 없는 사항
+    unanswerable: true
+  - id: G26
+    question: 해외 체류비는 하루에 얼마인가요?
+    type: 규정에 없는 사항
+    unanswerable: true
+  - id: G27
+    question: 사내 동호회 지원금은 얼마까지 나오나요?
+    type: 규정에 없는 사항
+    unanswerable: true
+  - id: G28
+    question: 반려동물 동반 출근이 가능한가요?
+    type: 규정에 없는 사항
+    unanswerable: true
+  - id: G29
+    question: 해외 파견 시 주택 지원이 있나요?
+    type: 규정에 없는 사항
+    unanswerable: true
+  - id: G30
+    question: 임원 전용 주차 구역 배정 기준은 무엇인가요?
+    type: 규정에 없는 사항
+    unanswerable: true

@@ -1,0 +1,315 @@
+/* Design tokens shared by the Streamlit UI. */
+:root {
+  --ag-bg: #ffffff;
+  --ag-surface: #ffffff;
+  --ag-sb: #e8efed;
+  --ag-ink: #1f2a28;
+  --ag-sb-ink: #31413d;
+  --ag-muted: #6f7e79;
+  --ag-line: #d8e2df;
+  --ag-line-2: #c5d2ce;
+  --ag-accent: #2f8374;
+  --ag-accent-ink: #21685d;
+  --ag-accent-soft: #e0f0ec;
+  --ag-ok: #27795e;
+  --ag-ok-soft: #e4f2eb;
+  --ag-wait: #9a6a2f;
+  --ag-wait-soft: #faf0df;
+  --ag-no: #ae4b46;
+  --ag-no-soft: #fae8e6;
+  --ag-radius: 6px;
+  --ag-radius-sm: 4px;
+  --ag-lh: 1.55;
+  --ag-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --ag-fs-xs: 12px;
+  --ag-fs-sm: 14px;
+  --ag-fs-md: 16px;
+  --ag-fs-lg: 20px;
+  --ag-fs-xl: 28px;
+  --ag-fs-2xl: 34px;
+  --ag-s1: 4px;
+  --ag-s2: 8px;
+  --ag-s3: 12px;
+  --ag-s4: 16px;
+  --ag-s5: 24px;
+  --ag-s6: 32px;
+  --ag-row-x: 12px;
+  --ag-row-y: 9px;
+}
+
+/* ===========================================================
+   components.css — 우리가 만든 컴포넌트만.
+   ★ 모든 클래스에 ag- 접두어 필수.
+     (설계 단계에서 필터 칩 .sel 과 표 행 .sel 이 충돌해
+      display:inline-flex 가 <tr> 에 적용되면서 표가 통째로 무너진 사고가 있었다)
+   ★ 한 클래스는 한 종류의 요소에만 쓴다.
+   =========================================================== */
+
+/* ── 배지 ───────────────────────────────────────────── */
+.ag-badge {
+  display: inline-flex; align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--ag-radius-sm);
+  font-size: var(--ag-fs-xs); font-weight: 600; line-height: 1.75;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.ag-badge--ok      { background: var(--ag-ok-soft);     color: var(--ag-ok);     border-color: #C9E2D4; }
+.ag-badge--wait    { background: var(--ag-wait-soft);   color: var(--ag-wait);   border-color: #EBD9BC; }
+.ag-badge--no      { background: var(--ag-no-soft);     color: var(--ag-no);     border-color: #EDCBCA; }
+.ag-badge--accent  { background: var(--ag-accent-soft); color: var(--ag-accent-ink); border-color: #C6E0D9; }
+.ag-badge--neutral { background: var(--ag-sb);          color: var(--ag-muted);  border-color: var(--ag-line); }
+.ag-badge--count   { background: var(--ag-no);          color: #fff; min-width: 17px; justify-content: center; }
+
+/* ── 표 ─────────────────────────────────────────────── */
+.ag-tbl-wrap { width: 100%; overflow-x: auto; }
+.ag-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  /* 열이 8개까지 가는 표가 있어 본문보다 반 단계 작게 잡는다.
+     그래도 보조 텍스트(--ag-fs-sm)보다 작지 않다. */
+  font-size: 13.5px;
+  background: var(--ag-surface);
+  border: 1px solid var(--ag-line);
+  border-radius: var(--ag-radius);
+  table-layout: auto;
+}
+.ag-tbl th {
+  background: var(--ag-sb);
+  color: var(--ag-sb-ink);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--ag-row-y) var(--ag-row-x);
+  border-bottom: 1px solid var(--ag-line-2);
+  white-space: nowrap;
+}
+.ag-tbl td {
+  padding: var(--ag-row-y) var(--ag-row-x);
+  line-height: 1.7;
+  border-bottom: 1px solid var(--ag-line);
+  color: var(--ag-ink);
+  vertical-align: top;
+  word-break: keep-all;      /* 한국어 열이 한 글자씩 쪼개지지 않게 */
+}
+.ag-tbl tr:last-child td { border-bottom: none; }
+
+/* 행 상태 — tr 에만 쓴다 */
+.ag-row-sel    { background: var(--ag-accent-soft); }
+.ag-row-sel td { color: var(--ag-accent-ink); font-weight: 500; }
+.ag-row-muted td { color: var(--ag-muted); }
+.ag-row-total    { background: var(--ag-accent-soft); }
+.ag-row-total td { color: var(--ag-accent-ink); font-weight: 700; border-top: 1px solid #C6E0D9; }
+
+/* 셀 정렬 — td/th 에만 쓴다 */
+.ag-num  { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ag-nowrap { white-space: nowrap; }
+
+/* ── 카드 ───────────────────────────────────────────── */
+.ag-card {
+  background: var(--ag-surface);
+  border: 1px solid var(--ag-line);
+  border-radius: var(--ag-radius);
+  padding: var(--ag-s5);
+  margin-bottom: var(--ag-s4);
+}
+.ag-card-label {
+  font-size: var(--ag-fs-xs);
+  font-weight: 700;
+  letter-spacing: .4px;
+  color: var(--ag-muted);
+  margin-bottom: var(--ag-s2);
+}
+.ag-card-title { font-size: var(--ag-fs-lg); font-weight: 700; margin-bottom: var(--ag-s2); }
+
+/* ── 인용 · 근거 블록 ───────────────────────────────── */
+.ag-src {
+  border-left: 2px solid var(--ag-accent);
+  padding: 4px 0 4px var(--ag-s3);
+  margin: var(--ag-s2) 0 var(--ag-s3);
+  color: var(--ag-ink);
+  font-size: var(--ag-fs-sm);
+  line-height: 1.8;
+}
+.ag-src--no { border-left-color: var(--ag-no); color: var(--ag-muted); }
+.ag-src-meta { font-size: var(--ag-fs-xs); color: var(--ag-muted); margin-top: 4px; line-height: 1.6; }
+
+/* ── 메시지 블록 (Slack 전송 문구 등) ───────────────── */
+.ag-msg {
+  background: var(--ag-accent-soft);
+  border: 1px solid #C6E0D9;
+  border-radius: var(--ag-radius);
+  padding: var(--ag-s4);
+  font-size: var(--ag-fs-sm);
+  line-height: 1.85;
+  color: var(--ag-accent-ink);
+  white-space: pre-wrap;
+}
+
+/* ── 안내 노트 ──────────────────────────────────────── */
+.ag-note {
+  border-left: 3px solid var(--ag-line-2);
+  background: var(--ag-surface);
+  border-radius: 0 var(--ag-radius) var(--ag-radius) 0;
+  padding: var(--ag-s4);
+  font-size: var(--ag-fs-sm);
+  line-height: 1.8;
+  margin: var(--ag-s3) 0;
+}
+.ag-note--wait { border-left-color: var(--ag-wait); }
+.ag-note--no   { border-left-color: var(--ag-no); }
+.ag-note--ok   { border-left-color: var(--ag-ok); }
+
+/* ── 키-값 표 ───────────────────────────────────────── */
+/* 글자가 셀 선에 붙지 않게 좌우 여백을 준다.
+   표 안의 글씨는 선에서 한 칸 떨어져야 읽힌다. */
+.ag-kv {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--ag-fs-sm);
+  border: 1px solid var(--ag-line);
+  border-radius: var(--ag-radius);
+  overflow: hidden;
+}
+.ag-kv td {
+  padding: 11px var(--ag-row-x);
+  border-bottom: 1px solid var(--ag-line);
+  vertical-align: top;
+  word-break: keep-all;
+  line-height: 1.65;
+}
+.ag-kv tr:last-child td { border-bottom: none; }
+.ag-kv-k {
+  color: var(--ag-muted);
+  width: 150px;
+  white-space: nowrap;
+  background: var(--ag-sb);
+  border-right: 1px solid var(--ag-line);
+}
+.ag-kv-v { color: var(--ag-ink); }
+
+/* ── 지표 타일 ──────────────────────────────────────── */
+.ag-metrics { display: flex; gap: var(--ag-s3); flex-wrap: wrap; margin-bottom: var(--ag-s4); }
+.ag-metric {
+  flex: 1 1 110px;
+  min-width: 104px;
+  background: var(--ag-surface);
+  border: 1px solid var(--ag-line);
+  border-radius: var(--ag-radius);
+  padding: var(--ag-s4);
+}
+.ag-metric-label { font-size: var(--ag-fs-xs); color: var(--ag-muted); margin-bottom: 6px; white-space: nowrap; }
+.ag-metric-value { font-size: var(--ag-fs-xl); font-weight: 700; line-height: 1.25; font-variant-numeric: tabular-nums; }
+.ag-metric-delta { font-size: var(--ag-fs-xs); margin-top: 5px; }
+.ag-metric--wait .ag-metric-value { color: var(--ag-wait); }
+.ag-metric--ok   .ag-metric-value { color: var(--ag-ok); }
+.ag-metric--no   .ag-metric-value { color: var(--ag-no); }
+
+/* ── 파이프라인 · 검색 단계 ─────────────────────────── */
+.ag-steps { border: 1px solid var(--ag-line); border-radius: var(--ag-radius); background: var(--ag-surface); }
+.ag-step {
+  display: flex; align-items: center; gap: var(--ag-s3);
+  padding: var(--ag-row-y) var(--ag-s4);
+  border-bottom: 1px solid var(--ag-line);
+  font-size: var(--ag-fs-sm);
+  line-height: 1.6;
+}
+.ag-step:last-child { border-bottom: none; }
+.ag-step-mark { width: 15px; text-align: center; font-weight: 700; flex: none; }
+.ag-step-name { flex: 1; color: var(--ag-ink); word-break: keep-all; }
+.ag-step-time { color: var(--ag-muted); font-family: var(--ag-mono); font-size: var(--ag-fs-xs); flex: none; }
+.ag-step--ok   .ag-step-mark { color: var(--ag-ok); }
+.ag-step--no   .ag-step-mark { color: var(--ag-no); }
+.ag-step--wait .ag-step-mark { color: var(--ag-wait); }
+.ag-step--todo .ag-step-mark, .ag-step--todo .ag-step-name { color: var(--ag-muted); }
+
+/* ── 진행바 ─────────────────────────────────────────── */
+.ag-progress { height: 7px; margin-top: var(--ag-s2); background: var(--ag-sb); border-radius: 3px; overflow: hidden; }
+.ag-progress-fill { height: 100%; background: var(--ag-accent); }
+
+/* ── 가로 막대 차트 ─────────────────────────────────── */
+.ag-bars { width: 100%; }
+.ag-bar-row { display: flex; align-items: center; gap: var(--ag-s3); margin-bottom: 10px; }
+.ag-bar-label { width: 116px; flex: none; font-size: var(--ag-fs-sm); color: var(--ag-ink); text-align: right; word-break: keep-all; }
+.ag-bar-track { flex: 1; height: 18px; background: var(--ag-sb); border-radius: 2px; position: relative; }
+.ag-bar-fill  { height: 100%; background: #9FC7BF; border-radius: 2px; }
+.ag-bar-fill--strong { background: var(--ag-accent); }
+.ag-bar-value { width: 52px; flex: none; font-size: var(--ag-fs-sm); font-variant-numeric: tabular-nums; color: var(--ag-ink); }
+/* 축은 막대와 '같은 flex 레이아웃'을 써야 눈금과 길이가 정확히 일치한다.
+   margin 으로 맞추면 폰트·줌에 따라 어긋난다. */
+.ag-bar-axis-track { flex: 1; position: relative; height: 15px; border-top: 1px solid var(--ag-line-2); }
+.ag-bar-tick {
+  position: absolute; top: 3px;
+  font-size: var(--ag-fs-xs); color: var(--ag-muted);
+  transform: translateX(-50%); white-space: nowrap;
+}
+.ag-bar-tick--first { transform: none; }
+.ag-bar-tick--last  { transform: translateX(-100%); }
+.ag-bar-grid { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ag-line); }
+
+/* ── 타임라인 (버전 이력) ───────────────────────────── */
+.ag-tl { position: relative; padding-left: var(--ag-s5); }
+.ag-tl::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--ag-line-2); }
+.ag-tl-item { position: relative; padding-bottom: var(--ag-s5); line-height: 1.7; }
+.ag-tl-item::before {
+  content: ""; position: absolute; left: -22px; top: 5px;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ag-line-2); border: 2px solid var(--ag-bg);
+}
+.ag-tl-item--now::before { background: var(--ag-accent); box-shadow: 0 0 0 3px var(--ag-accent-soft); }
+
+/* ── 감사 로그 · 메타 푸터 ──────────────────────────── */
+.ag-log {
+  font-family: var(--ag-mono);
+  font-size: var(--ag-fs-xs);
+  line-height: 2.1;
+  color: var(--ag-sb-ink);
+  background: var(--ag-sb);
+  border: 1px solid var(--ag-line);
+  border-radius: var(--ag-radius);
+  padding: var(--ag-s4);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.ag-meta {
+  font-family: var(--ag-mono);
+  font-size: 12px;
+  color: var(--ag-muted);
+  border-top: 1px dashed var(--ag-line-2);
+  padding-top: 9px;
+  margin-top: var(--ag-s4);
+  line-height: 1.7;
+}
+
+/* ── 칩 (필터) ──────────────────────────────────────── */
+.ag-chip {
+  display: inline-flex; align-items: center;
+  padding: 4px 11px; margin-right: 6px;
+  border: 1px solid var(--ag-line-2); border-radius: 11px;
+  font-size: var(--ag-fs-xs); color: var(--ag-muted);
+  background: var(--ag-surface);
+}
+.ag-chip--on { background: var(--ag-accent-soft); border-color: #C6E0D9; color: var(--ag-accent-ink); font-weight: 600; }
+
+/* ── 빵부스러기 · 페이지 헤더 ───────────────────────── */
+.ag-crumb { font-size: var(--ag-fs-sm); color: var(--ag-muted); margin-bottom: 5px; }
+.ag-head { display: flex; align-items: center; gap: var(--ag-s2); flex-wrap: wrap; margin-bottom: 2px; }
+.ag-sub { font-size: var(--ag-fs-sm); color: var(--ag-muted); margin-bottom: var(--ag-s5); line-height: 1.7; }
+
+/* ── 사이드바 사용자 ────────────────────────────────── */
+.ag-user { display: flex; align-items: center; gap: var(--ag-s3); padding-top: var(--ag-s4); margin-top: var(--ag-s3); border-top: 1px solid var(--ag-line-2); }
+.ag-avatar {
+  width: 32px; height: 32px; border-radius: 50%; flex: none;
+  background: var(--ag-accent-soft); color: var(--ag-accent-ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--ag-fs-sm); font-weight: 700;
+}
+.ag-user-name { font-size: var(--ag-fs-sm); font-weight: 600; color: var(--ag-sb-ink); line-height: 1.3; }
+.ag-user-role { font-size: var(--ag-fs-xs); color: var(--ag-muted); line-height: 1.3; }
+
+/* ── 브랜드 ─────────────────────────────────────────── */
+.ag-brand { margin-bottom: var(--ag-s5); }
+.ag-brand-name { font-size: var(--ag-fs-lg); font-weight: 700; color: var(--ag-accent-ink); line-height: 1.2; }
+.ag-brand-sub  { font-size: 11px; letter-spacing: 1.4px; margin-top: 2px; color: var(--ag-muted); text-transform: uppercase; }
+
+/* ── 모드 배지 (MOCK / LIVE) ────────────────────────── */
+.ag-mode { position: relative; float: right; }
